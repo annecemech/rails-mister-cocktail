@@ -1,7 +1,19 @@
-<h1>See all cocktails</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1ecGTpx-D6M/);">
+  <div class="container">
+    <h1>See all <strong>cocktails</strong>!</h1>
+    <p>And do your own... cheers !</p>
+    <%= link_to "Add a cocktail", new_cocktail_path, class: "btn-flat" %>
+  </div>
+</div>
 
-<% @cocktails.each do |cocktail| %>
-<%= cocktail.name %>
-<%= link_to "See details", cocktail_path(cocktail), class:"btn btn-primary" %>
-
-<% end %>
+<div class="container py-5">
+  <div class="cards">
+    <% @cocktails.each do |cocktail| %>
+      <%= link_to cocktail_path(cocktail) do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          <%= cocktail.name %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
