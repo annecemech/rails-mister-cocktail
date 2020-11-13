@@ -1,16 +1,29 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1ecGTpx-D6M/);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @cocktail.photo.key %>')">
   <div class="container">
     <h1><%= @cocktail.name %></h1>
   </div>
 </div>
 
-<div class="container py-5">
+<div class="container pt-5 pb-3">
   <% @cocktail.doses.each do |dose| %>
-  <%= dose.description %>
-  <%= dose.ingredient.name %>
-  <%= link_to "Delete", dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
+  <div class="notification">
+    <div class="notification-content">
+      <p><small><%= dose.ingredient.name %></small></p>
+      <p><%= dose.description %></p>
+    </div>
 
+    <div class="notification-actions">
+      <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <i class="far fa-trash-alt"></i>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div class="container">
   <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
-  <%= link_to "Back to cocktails list", cocktails_path, class:"btn btn-primary" %>
+</div>
+
+<div class="container py-5">
+  <%= link_to "Back to cocktails list", cocktails_path, class:"btn-flat" %>
 </div>
